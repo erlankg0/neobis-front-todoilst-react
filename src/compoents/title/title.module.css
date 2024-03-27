@@ -1,7 +1,7 @@
 .content{
-    display: flex;
-    flex-direction: row;
-    gap: 2rem;
+    display: grid;
+    grid-template-columns:20em 1fr;
+    gap: 1rem;
 }
 
 .title{

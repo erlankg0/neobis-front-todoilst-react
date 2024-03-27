@@ -1,0 +1,17 @@
+.errorTitle{
+    font-size: 1.4rem;
+    color: red;
+}
+
+/* Пример стилей для Radio.Group и Radio */
+.ant-radio-wrapper {
+    color: #1890ff; /* Цвет текста */
+}
+
+.ant-radio-wrapper .ant-radio {
+    border-color: #1890ff; /* Цвет обводки радио-кнопки */
+}
+
+.ant-radio-wrapper .ant-radio-checked .ant-radio-inner {
+    background-color: rgba(0, 255, 196, 0.7); /* Цвет фона радио-кнопки при выборе */
+}

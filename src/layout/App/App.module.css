@@ -1,4 +1,5 @@
 .content{
     background-color: lightblue;
     margin: 0 auto;
+    max-width: 60%;
 }

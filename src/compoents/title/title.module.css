@@ -1,17 +1,24 @@
 .content{
     display: grid;
-    grid-template-columns:20em 1fr;
+    grid-template-columns: 1fr 30rem;
+    align-items: center;
     gap: 1rem;
 }
-
 .title{
+    font-weight: bold;
     font-size: 2rem;
+
 }
 
 .input{
+    height: 2rem;
+    padding: .3rem;
     border: none;
-    padding: .5rem;
-    font-size: 1.5rem;
-    font-weight: bold;
-    cursor: text;
+    background-color: #f8f8f8;
+}
+
+@media (max-width: 425px) {
+    .content{
+        grid-template-columns: 1fr;
+    }
 }

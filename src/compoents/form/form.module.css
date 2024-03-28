@@ -1,17 +1,41 @@
-.errorTitle{
+.errorTitle {
     font-size: 1.4rem;
     color: red;
 }
 
-/* Пример стилей для Radio.Group и Radio */
-.ant-radio-wrapper {
-    color: #1890ff; /* Цвет текста */
+.title {
+    font-size: 2rem;
+    font-weight: 500;
+    line-height: 3rem;
+    color: #888888;
 }
 
-.ant-radio-wrapper .ant-radio {
-    border-color: #1890ff; /* Цвет обводки радио-кнопки */
+.form {
+    width: 60rem;
+    font-size: 1.8rem;
+    font-weight: 400;
+    line-height: 2rem;
+
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
 }
 
-.ant-radio-wrapper .ant-radio-checked .ant-radio-inner {
-    background-color: rgba(0, 255, 196, 0.7); /* Цвет фона радио-кнопки при выборе */
+.radioFlex {
+    display: flex;
+    flex-direction: column-reverse;
+}
+
+.radoGroupFlex {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    justify-content: center;
+}
+
+@media (min-width: 762px) {
+    .form{
+        max-width: unset;
+        width: 50rem;
+    }
 }

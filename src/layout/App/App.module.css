@@ -1,5 +1,15 @@
 .content{
-    background-color: lightblue;
     margin: 0 auto;
     max-width: 60%;
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-items: center;
+}
+
+
+@media (max-width: 768px) {
+    .content{
+        max-width: 100%;
+    }
+
 }

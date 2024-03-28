@@ -1,8 +1,8 @@
-import {ConfigProvider, Input, Radio, RadioChangeEvent} from "antd";
-import {ClockCircleOutlined} from "@ant-design/icons";
+import {ConfigProvider, Input, Radio, RadioChangeEvent, Button} from "antd";
 import {Field, Form, Formik} from "formik";
 import {useState} from "react";
 import * as Yup from 'yup';
+import styles from './form.module.css'
 
 const FormToDo = () => {
 
@@ -24,10 +24,12 @@ const FormToDo = () => {
             })}
             onSubmit={(values, {resetForm}) => {
                 alert(JSON.stringify(values, null, 2));
+                setRadio(null);
                 resetForm();
             }}>
             {({errors, touched, setFieldValue, values}) => (
-                <Form>
+                <Form className={styles.form}>
+                    <h1 className={styles.title}><strong>To Do</strong></h1>
                     <Field
                         name="toDo"
                         value={values.toDo}
@@ -36,15 +38,11 @@ const FormToDo = () => {
                         showCount
                         as={Input}
                         status={errors.toDo && 'error'}
-                        prefix={touched.toDo ? <ClockCircleOutlined/> : null}
                     />
-
-                    {/*Проверка ошибки*/}
-                    {errors.toDo || touched.toDo && <div>{errors.toDo}</div>}
-                    <div>
+                    <div className={styles.title}>
                         Categories
                     </div>
-                    <Radio.Group value={radio} onChange={(event: RadioChangeEvent) => {
+                    <Radio.Group className={styles.radoGroupFlex} value={radio} onChange={(event: RadioChangeEvent) => {
                         setFieldValue("category", event.target.value);
                         handleOnChangeRadio(event);
                         return
@@ -61,7 +59,7 @@ const FormToDo = () => {
                                 },
                             }}
                         >
-                            <Radio name="category" value={'Person'}>Person</Radio>
+                            <Radio name="category" value={'Person'} className={styles.radioFlex}>Person</Radio>
                         </ConfigProvider>
                         <ConfigProvider
                             theme={{
@@ -74,13 +72,11 @@ const FormToDo = () => {
                                 },
                             }}
                         >
-                            <Radio name="category" value={'Business'}>Business</Radio>
+                            <Radio name="category" value={'Business'} className={styles.radioFlex}>Business</Radio>
                         </ConfigProvider>
                     </Radio.Group>
-                    {errors.category && <div>
-                        {errors.category}
-                    </div>}
-                    <button type="submit">Send</button>
+                    {errors.category && <p className={styles.errorTitle}>{errors.category}</p>}
+                    <Button type="primary" htmlType="submit">Add</Button>
                 </Form>
             )}
         </Formik>

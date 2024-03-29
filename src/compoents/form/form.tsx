@@ -1,18 +1,18 @@
-import {ConfigProvider, Input, Radio, RadioChangeEvent, Button} from "antd";
+import {Button, ConfigProvider, Input, Radio, RadioChangeEvent} from "antd";
 import {Field, Form, Formik} from "formik";
-import {useState} from "react";
 import * as Yup from 'yup';
 import styles from './form.module.css'
+import {useState} from "react";
 
-const FormToDo = () => {
+interface IFormProps {
+    handleAddToDo: (title: string, category: string) => void;
 
+}
+
+const FormToDo: React.FC<IFormProps> = ({handleAddToDo}) => {
     const [radio, setRadio] = useState(null);
-    const handleOnChangeRadio = (event: RadioChangeEvent) => {
-        setRadio(event.target.value);
-    }
 
     return (
-
         <Formik
             initialValues={{
                 toDo: '',
@@ -23,28 +23,31 @@ const FormToDo = () => {
                 category: Yup.string().required('Объязательное поле')
             })}
             onSubmit={(values, {resetForm}) => {
-                alert(JSON.stringify(values, null, 2));
-                setRadio(null);
+                setRadio(null);// обнуления radio
+                handleAddToDo(values.toDo, values.category);
                 resetForm();
+
             }}>
-            {({errors, touched, setFieldValue, values}) => (
+            {({errors, setFieldValue}) => (
                 <Form className={styles.form}>
                     <h1 className={styles.title}><strong>To Do</strong></h1>
                     <Field
                         name="toDo"
-                        value={values.toDo}
                         placeholder="To Do"
                         maxLength={30}
                         showCount
                         as={Input}
                         status={errors.toDo && 'error'}
+                        onChange={(e) => setFieldValue('toDo', e.target.value)} // Обновление значения через Formik
                     />
+
                     <div className={styles.title}>
                         Categories
                     </div>
                     <Radio.Group className={styles.radoGroupFlex} value={radio} onChange={(event: RadioChangeEvent) => {
                         setFieldValue("category", event.target.value);
-                        handleOnChangeRadio(event);
+                        console.log(event.target.value)
+                        setRadio(event.target.value);
                         return
                     }}>
                         <ConfigProvider

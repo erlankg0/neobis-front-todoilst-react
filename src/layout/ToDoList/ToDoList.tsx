@@ -1,17 +1,8 @@
 import ToDoItem from "../../compoents/toDoItem/toDoItem.tsx";
-import styles from './toDoList.module.css';
-import {useAddDispatch, useAppSelector} from "../../hooks.ts";
-import {useState} from "react";
-import {RadioChangeEvent} from "antd";
-
+import {useAppSelector} from "../../hooks.ts";
+import styles from './toDoList.module.css'
 const ToDoList = () => {
-    const todos = useAppSelector(state => state.list);
-    const [radio, setRadio] = useState(null);
-    const handleOnChangeRadio = (event: RadioChangeEvent) => {
-        setRadio(event.target.value);
-    }
-    const dispatch = useAddDispatch();
-
+    const todos = useAppSelector(state => state.todos.list);
 
     return (
         <div className={styles.toDoList}>

@@ -1,12 +1,15 @@
 import {Field, Form, Formik} from 'formik';
 import {Button, Checkbox, Input} from 'antd';
 import React, {useState} from "react";
-import styles from './toDoItem.module.css';
 import {useAddDispatch} from "../../hooks.ts";
 import {removeTodo, toggleToDoIsDone, updateTextTodoItem} from "../../redux/toDoSlice.ts";
-import {IToDoItem} from "../../layout/ToDoItem/ToDoItemContainer.tsx";
+import styles from './toDoItem.module.css'
 
-
+interface IToDoItem{
+    id: string,
+    title: string,
+    isDone: boolean
+}
 const ToDoItem: React.FC<IToDoItem> = ({
                                            id,
                                            title,
@@ -53,9 +56,11 @@ const ToDoItem: React.FC<IToDoItem> = ({
                             value={title}
                             placeholder={title}
                             disabled={isEdit}
-                            className={styles.Done}
+                            className={styles.isDone}
                             style={{textDecoration: 'line-through'}}
-                            onChange={(event) => handleEditTodo(id, event.target.value)}
+                            onChange={(event) => {
+                                handleEditTodo(id, event.target.value);
+                            }}
                         /> : <Input
                             value={title}
                             placeholder={title}

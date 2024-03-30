@@ -2,11 +2,10 @@ import {Button, ConfigProvider, Input, Radio, RadioChangeEvent} from "antd";
 import {Field, Form, Formik} from "formik";
 import * as Yup from 'yup';
 import styles from './form.module.css'
-import {useState} from "react";
+import React, {useState} from "react";
 
 interface IFormProps {
     handleAddToDo: (title: string, category: string) => void;
-
 }
 
 const FormToDo: React.FC<IFormProps> = ({handleAddToDo}) => {

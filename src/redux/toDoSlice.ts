@@ -26,7 +26,7 @@ const toDoSlice = createSlice({
                 id: new Date().toString(),
                 title: action.payload.title,
                 category: action.payload.category,
-                isDone: true
+                isDone: false
             }
             state.list = [...state.list, newTodo];
         },

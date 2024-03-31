@@ -3,7 +3,7 @@ import {Button, Checkbox, Input} from 'antd';
 import React, {useState} from "react";
 import {useAddDispatch} from "../../hooks.ts";
 import {Category, removeTodo, toggleToDoIsDone, updateTextTodoItem} from "../../redux/toDoSlice.ts";
-import './toDoItem.css'
+import styles from './toDoItem.module.css'
 
 interface IToDoItem {
     id: string,
@@ -54,8 +54,8 @@ const ToDoItem: React.FC<IToDoItem> = ({
             }}
         >
             {() => (
-                <Form className={`${'toDoItem'} ${category == 'Person' ? 'person' : 'business'}`}>
-                    <div className={'left'}>
+                <Form className={`${styles.toDoItem} ${category == 'Person' ? styles.person : styles.business}`}>
+                    <div className={styles.left}>
                         <Checkbox onChange={() => handleIsDone(id)} name={'isDone'} defaultChecked={isDone}/>
                         {isDone ?
                             <Field
@@ -64,7 +64,7 @@ const ToDoItem: React.FC<IToDoItem> = ({
                                 value={title}
                                 placeholder={title}
                                 disabled={isEdit}
-                                className={'isDone'}
+                                className={styles.isDone}
                                 onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
                                     handleEditTodo(id, event.target.value);
                                 }}
@@ -78,7 +78,7 @@ const ToDoItem: React.FC<IToDoItem> = ({
 
                             />}
                     </div>
-                    <div className={'right'}>
+                    <div className={styles.right}>
                         <Button onClick={handleIsEdit} type="primary">Edit</Button>
                         <Button danger onClick={() => handleDelete(id)}>Delete</Button>
                     </div>

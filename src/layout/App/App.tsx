@@ -6,7 +6,7 @@ import ToDoList from "../ToDoList/ToDoList.tsx";
 const App = () => {
     return (
         <div className={styles.content}>
-            <Title name={'Erlan'}/>
+            <Title/>
             <FormContainer/>
             <ToDoList/>
         </div>

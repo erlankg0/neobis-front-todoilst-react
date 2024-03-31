@@ -20,3 +20,15 @@
 .isDone{
     text-decoration: line-through;
 }
+
+.person{
+    border: 1px solid #ff03b8 !important;
+    padding: 0.3rem;
+    border-radius: 1rem;
+}
+
+.business{
+    border: 1px solid #00c000 !important;
+    padding: 0.3rem;
+    border-radius: 1rem;
+}

@@ -2,18 +2,21 @@ import {Field, Form, Formik} from 'formik';
 import {Button, Checkbox, Input} from 'antd';
 import React, {useState} from "react";
 import {useAddDispatch} from "../../hooks.ts";
-import {removeTodo, toggleToDoIsDone, updateTextTodoItem} from "../../redux/toDoSlice.ts";
+import {Category, removeTodo, toggleToDoIsDone, updateTextTodoItem} from "../../redux/toDoSlice.ts";
 import styles from './toDoItem.module.css'
 
-interface IToDoItem{
+interface IToDoItem {
     id: string,
     title: string,
-    isDone: boolean
+    isDone: boolean,
+    category: Category
 }
+
 const ToDoItem: React.FC<IToDoItem> = ({
                                            id,
                                            title,
                                            isDone,
+                                           category
 
                                        }) => {
     const dispatch = useAddDispatch();
@@ -34,6 +37,7 @@ const ToDoItem: React.FC<IToDoItem> = ({
         dispatch(updateTextTodoItem({id: id, text: text})); // Dispatch the action
     }
 
+
     return (
         <Formik
             initialValues={{
@@ -47,27 +51,27 @@ const ToDoItem: React.FC<IToDoItem> = ({
             }}
         >
             {() => (
-                <Form className={styles.toDoItem}>
+                <Form className={`${styles.toDoItem} ${category == 'Person' ? styles.person : styles.business}`}>
                     <div className={styles.left}>
                         <Checkbox onChange={() => handleIsDone(id)} name={'isDone'} defaultChecked={isDone}/>
-                        {isDone ? <Field
-                            name="toDo"
-                            as={Input}
-                            value={title}
-                            placeholder={title}
-                            disabled={isEdit}
-                            className={styles.isDone}
-                            style={{textDecoration: 'line-through'}}
-                            onChange={(event) => {
-                                handleEditTodo(id, event.target.value);
-                            }}
-                        /> : <Input
-                            value={title}
-                            placeholder={title}
-                            disabled={isEdit}
-                            onChange={(event) => handleEditTodo(id, event.target.value)}
-                            onBlur={() => handleIsEdit()}
-                        />}
+                        {isDone ?
+                            <Field
+                                name="toDo"
+                                as={Input}
+                                value={title}
+                                placeholder={title}
+                                disabled={isEdit}
+                                className={styles.isDone}
+                                onChange={(event) => {
+                                    handleEditTodo(id, event.target.value);
+                                }}
+                            /> : <Input
+                                value={title}
+                                placeholder={title}
+                                disabled={isEdit}
+                                onChange={(event) => handleEditTodo(id, event.target.value)}
+                                onBlur={() => handleIsEdit()}
+                            />}
                     </div>
                     <div className={styles.right}>
                         <Button onClick={handleIsEdit} type="primary">Edit</Button>

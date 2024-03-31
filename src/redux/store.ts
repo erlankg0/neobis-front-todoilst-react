@@ -1,5 +1,7 @@
 import {configureStore, combineReducers} from "@reduxjs/toolkit";
 import todoReducer from './toDoSlice.ts';
+import textReducer from './nameSlice.ts';
+
 import {
     persistStore,
     persistReducer,
@@ -15,6 +17,7 @@ import storage from 'redux-persist/lib/storage' // defaults to localStorage for 
 
 const rootReducers = combineReducers({
     todos: todoReducer,
+    title: textReducer,
 });
 
 

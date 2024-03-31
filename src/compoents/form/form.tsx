@@ -54,9 +54,9 @@ const FormToDo: React.FC<IFormProps> = ({handleAddToDo}) => {
                                 components: {
                                     Radio: {
                                         radioSize: 20,
-                                        buttonSolidCheckedBg: '#ff0303',
-                                        colorBorder: '#ff0303',
-                                        buttonSolidCheckedHoverBg: '#ff0303'
+                                        buttonSolidCheckedBg: '#ff03b8',
+                                        colorBorder: '#ff03b8',
+                                        buttonSolidCheckedHoverBg: '#ff03b8'
                                     }
                                 },
                             }}

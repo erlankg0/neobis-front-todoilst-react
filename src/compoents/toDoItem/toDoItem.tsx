@@ -3,7 +3,7 @@ import {Button, Checkbox, Input} from 'antd';
 import React, {useState} from "react";
 import {useAddDispatch} from "../../hooks.ts";
 import {Category, removeTodo, toggleToDoIsDone, updateTextTodoItem} from "../../redux/toDoSlice.ts";
-import styles from './toDoItem.module.css'
+import './toDoItem.css'
 
 interface IToDoItem {
     id: string,
@@ -24,6 +24,9 @@ const ToDoItem: React.FC<IToDoItem> = ({
     // для toggle edit button
     const [isEdit, setEdit] = useState(true);
     const handleIsEdit = () => {
+        setEdit((value) => !value);
+    }
+    const handleOnBlur = () => {
         setEdit((value) => !value);
     }
     const handleDelete = (id: string) => {
@@ -51,8 +54,8 @@ const ToDoItem: React.FC<IToDoItem> = ({
             }}
         >
             {() => (
-                <Form className={`${styles.toDoItem} ${category == 'Person' ? styles.person : styles.business}`}>
-                    <div className={styles.left}>
+                <Form className={`${'toDoItem'} ${category == 'Person' ? 'person' : 'business'}`}>
+                    <div className={'left'}>
                         <Checkbox onChange={() => handleIsDone(id)} name={'isDone'} defaultChecked={isDone}/>
                         {isDone ?
                             <Field
@@ -61,19 +64,21 @@ const ToDoItem: React.FC<IToDoItem> = ({
                                 value={title}
                                 placeholder={title}
                                 disabled={isEdit}
-                                className={styles.isDone}
-                                onChange={(event) => {
+                                className={'isDone'}
+                                onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
                                     handleEditTodo(id, event.target.value);
                                 }}
+                                onBlur={handleOnBlur}
                             /> : <Input
                                 value={title}
                                 placeholder={title}
                                 disabled={isEdit}
-                                onChange={(event) => handleEditTodo(id, event.target.value)}
+                                onChange={(event: React.ChangeEvent<HTMLInputElement>) => handleEditTodo(id, event.target.value)}
                                 onBlur={() => handleIsEdit()}
+
                             />}
                     </div>
-                    <div className={styles.right}>
+                    <div className={'right'}>
                         <Button onClick={handleIsEdit} type="primary">Edit</Button>
                         <Button danger onClick={() => handleDelete(id)}>Delete</Button>
                     </div>

@@ -1,7 +1,7 @@
 import {Button, ConfigProvider, Input, Radio, RadioChangeEvent} from "antd";
 import {Field, Form, Formik} from "formik";
 import * as Yup from 'yup';
-import styles from './form.module.css'
+import './form.css'
 import React, {useState} from "react";
 
 interface IFormProps {
@@ -28,8 +28,8 @@ const FormToDo: React.FC<IFormProps> = ({handleAddToDo}) => {
 
             }}>
             {({errors, setFieldValue}) => (
-                <Form className={styles.form}>
-                    <h1 className={styles.title}><strong>To Do</strong></h1>
+                <Form className={'form'}>
+                    <h1 className={'title'}><strong>To Do</strong></h1>
                     <Field
                         name="toDo"
                         placeholder="To Do"
@@ -37,13 +37,13 @@ const FormToDo: React.FC<IFormProps> = ({handleAddToDo}) => {
                         showCount
                         as={Input}
                         status={errors.toDo && 'error'}
-                        onChange={(e) => setFieldValue('toDo', e.target.value)} // Обновление значения через Formik
+                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => setFieldValue('toDo', e.target.value)} // Обновление значения через Formik
                     />
 
-                    <div className={styles.title}>
+                    <div className={'title'}>
                         Categories
                     </div>
-                    <Radio.Group className={styles.radoGroupFlex} value={radio} onChange={(event: RadioChangeEvent) => {
+                    <Radio.Group className={'radoGroupFlex'} value={radio} onChange={(event: RadioChangeEvent) => {
                         setFieldValue("category", event.target.value);
                         console.log(event.target.value)
                         setRadio(event.target.value);
@@ -61,7 +61,7 @@ const FormToDo: React.FC<IFormProps> = ({handleAddToDo}) => {
                                 },
                             }}
                         >
-                            <Radio name="category" value={'Person'} className={styles.radioFlex}>Person</Radio>
+                            <Radio name="category" value={'Person'} className={'radioFlex'}>Person</Radio>
                         </ConfigProvider>
                         <ConfigProvider
                             theme={{
@@ -74,10 +74,10 @@ const FormToDo: React.FC<IFormProps> = ({handleAddToDo}) => {
                                 },
                             }}
                         >
-                            <Radio name="category" value={'Business'} className={styles.radioFlex}>Business</Radio>
+                            <Radio name="category" value={'Business'} className={'radioFlex'}>Business</Radio>
                         </ConfigProvider>
                     </Radio.Group>
-                    {errors.category && <p className={styles.errorTitle}>{errors.category}</p>}
+                    {errors.category && <p className={'errorTitle'}>{errors.category}</p>}
                     <Button type="primary" htmlType="submit">Add</Button>
                 </Form>
             )}

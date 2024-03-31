@@ -1,10 +1,9 @@
 import {Field, Form, Formik} from "formik";
 import * as Yup from "yup";
 import {Input} from "antd";
-import styles from './title.module.css';
+import  './title.css';
 import {useAddDispatch, useAppSelector} from "src/hooks.ts";
 import {setText} from "src/redux/nameSlice.ts";
-import {s} from "vite/dist/node/types.d-aGj9QkWt";
 
 
 const Title = () => {
@@ -28,14 +27,14 @@ const Title = () => {
                 formikHelpers.resetForm();
             }}>
             {() => (
-                <Form className={styles.content}>
-                    <p className={styles.title}>What's Your Name</p>
+                <Form className={'content'}>
+                    <p className={'title'}>What's Your Name</p>
                     <Field
                         name="name"
                         placeholder={'Напишите свое имя'}
                         maxLength={30}
                         value={name}
-                        className={styles.input}
+                        className={'input'}
                         as={Input}
                         onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                             handleOnChangeText(e.target.value);

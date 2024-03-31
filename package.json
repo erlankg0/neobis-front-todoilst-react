@@ -2,6 +2,7 @@
   "name": "neobis-front-todoilst-react",
   "private": true,
   "version": "0.0.0",
+  "homepage": "https://erlankg0.guthub.io/neobis-front-todoilst-react",
   "type": "module",
   "scripts": {
     "dev": "vite",
